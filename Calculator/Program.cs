@@ -27,6 +27,10 @@ else if (userInput == "M")
 {
     Console.WriteLine((numberOne * numberTwo));
 }
+else
+{
+    Console.WriteLine("Invalid Option");
+}
 
 Console.Write("Press any key to close ");
 var closeInput = Console.ReadKey();
