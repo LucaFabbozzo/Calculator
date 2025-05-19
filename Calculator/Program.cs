@@ -1,31 +1,36 @@
 ﻿
+using System.Diagnostics.CodeAnalysis;
+
 Console.WriteLine("Hello!");
 
 Console.Write("Input the first number: ");
 var userInputOne = Console.ReadLine();
-int numberOne = int.Parse(userInputOne);
+int number1 = int.Parse(userInputOne);
 
 Console.Write("Input the second number: ");
 var userInputTwo = Console.ReadLine();
-int numberTwo = int.Parse(userInputTwo);
+int number2 = int.Parse(userInputTwo);
 
 Console.WriteLine("What do you want to do with those numbers?");
 Console.WriteLine("[A]dd");
 Console.WriteLine("[S]ubtract");
 Console.WriteLine("[M]ultiply");
+var choice = Console.ReadLine().ToUpper();
 
-var userInput = Console.ReadLine().ToUpper();
-if (userInput == "A")
+if (EqualsCaseInsensitive(choice, "A"))
 {
-    Console.WriteLine((numberOne + numberTwo));
+    var sum = number1 + number2;
+    PrintFinalEquation(number1, number2, sum, "+");
 }
-else if (userInput == "S")
+else if (EqualsCaseInsensitive(choice, "S"))
 {
-    Console.WriteLine((numberOne - numberTwo));
+    var difference = number1 - number2;
+    PrintFinalEquation(number1, number2, difference, "-");
 }
-else if (userInput == "M")
+else if (EqualsCaseInsensitive(choice, "M"))
 {
-    Console.WriteLine((numberOne * numberTwo));
+    var multiplied = number1 * number2;
+    PrintFinalEquation(number1, number2, multiplied, "*");
 }
 else
 {
@@ -34,3 +39,14 @@ else
 
 Console.Write("Press any key to close ");
 var closeInput = Console.ReadKey();
+
+
+void PrintFinalEquation(int number1, int number2, int result, string @operator)
+{
+    Console.WriteLine(number1 + " " + @operator + " " + number2 + " = " + result);
+}
+
+bool EqualsCaseInsensitive(string left, string right)
+{
+    return left.ToUpper() == right.ToUpper();
+}
